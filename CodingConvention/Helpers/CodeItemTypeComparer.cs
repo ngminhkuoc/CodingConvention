@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using CodingConvention.Models;
 using CodingConvention.Models.CodeItems;
+using EnvDTE;
 
 namespace CodingConvention.Helpers
 {
@@ -9,6 +11,26 @@ namespace CodingConvention.Helpers
     internal class CodeItemTypeComparer : Comparer<BaseCodeItem>
     {
         private readonly bool _secondaryOrderByName;
+        private readonly List<KindCodeItem> _kindOrder = new List<KindCodeItem>
+        {
+            KindCodeItem.Constants,
+            KindCodeItem.Field,
+            KindCodeItem.Constructor,
+            KindCodeItem.Method,
+            KindCodeItem.TestMethod,
+            KindCodeItem.Property,
+            KindCodeItem.Destructor,
+        };
+        private readonly List<AccessModifier> _accessModifierOrder = new List<AccessModifier>
+        {
+            AccessModifier.Public,
+            AccessModifier.ProtectedInternal,
+            AccessModifier.Protected,
+            AccessModifier.Internal,
+            AccessModifier.Default,
+            AccessModifier.PrivateProtected,
+            AccessModifier.Private,
+        };
 
         internal CodeItemTypeComparer() : this(true) { }
 
@@ -36,21 +58,6 @@ namespace CodingConvention.Helpers
         {
             int first = CalculateNumericRepresentation(x);
             int second = CalculateNumericRepresentation(y);
-
-            if (first == second)
-            {
-                // Check if secondary sort by name should occur.
-                if (_secondaryOrderByName)
-                {
-                    int nameComparison = NormalizeName(x).CompareTo(NormalizeName(y));
-                    if (nameComparison != 0)
-                        return nameComparison;
-                }
-
-                // Fall back to position comparison for matching elements.
-                return x.StartOffset.CompareTo(y.StartOffset);
-            }
-
             return first.CompareTo(second);
         }
 
@@ -59,25 +66,45 @@ namespace CodingConvention.Helpers
             int typeOffset = CalculateTypeOffset(codeItem);
             int constantOffset = CalculateConstantOffset(codeItem);
             int readOnlyOffset = CalculateReadOnlyOffset(codeItem);
+            int accessModifierOffset = CalculateAccessModifierOffset(codeItem);
 
-            int calc = typeOffset * 100 + constantOffset * 10 + readOnlyOffset;
+            int calc = typeOffset * 1000 + constantOffset * 100 + readOnlyOffset * 10 + accessModifierOffset;
 
             return calc;
         }
 
-        private static int CalculateTypeOffset(BaseCodeItem codeItem)
+        private int CalculateAccessModifierOffset(BaseCodeItem codeItem)
         {
-            var itemsOrder = new List<KindCodeItem>
+            var codeItemElement = codeItem as BaseCodeItemElement;
+            if (codeItemElement == null)
+                return 0;
+
+            return _accessModifierOrder.IndexOf(Map(codeItemElement.Access)) + 1;
+        }
+
+        private AccessModifier Map(vsCMAccess access)
+        {
+            switch (access)
             {
-                KindCodeItem.Constants,
-                KindCodeItem.Field,
-                KindCodeItem.Constructor,
-                KindCodeItem.Method,
-                KindCodeItem.TestMethod,
-                KindCodeItem.Property,
-                KindCodeItem.Destructor,
-            };
-            return itemsOrder.IndexOf(codeItem.Kind) + 1;
+                case vsCMAccess.vsCMAccessPublic:
+                    return AccessModifier.Public;
+                case vsCMAccess.vsCMAccessProject:
+                    return AccessModifier.Internal;
+                case vsCMAccess.vsCMAccessProtected:
+                    return AccessModifier.Protected;
+                case vsCMAccess.vsCMAccessDefault:
+                    return AccessModifier.Default;
+                case vsCMAccess.vsCMAccessProjectOrProtected:
+                    return AccessModifier.ProtectedInternal;
+                default:
+                    return AccessModifier.Private;
+            }
+            //there is no mapping for private protected
+        }
+
+        private int CalculateTypeOffset(BaseCodeItem codeItem)
+        {
+            return _kindOrder.IndexOf(codeItem.Kind) + 1;
         }
 
         private static int CalculateConstantOffset(BaseCodeItem codeItem)
@@ -94,21 +121,5 @@ namespace CodingConvention.Helpers
             return codeItem is CodeItemField codeItemField && codeItemField.IsReadOnly ? 0 : 1;
         }
 
-        private static string NormalizeName(BaseCodeItem codeItem)
-        {
-            string name = codeItem.Name;
-            var interfaceItem = codeItem as IInterfaceItem;
-
-            if ((interfaceItem != null) && interfaceItem.IsExplicitInterfaceImplementation)
-            {
-                // Try to find where the interface ends and the method starts
-                int dotPosition = name.LastIndexOf('.') + 1;
-
-                if (0 < dotPosition && dotPosition < name.Length)
-                    return name.Substring(dotPosition);
-            }
-
-            return name;
-        }
     }
 }

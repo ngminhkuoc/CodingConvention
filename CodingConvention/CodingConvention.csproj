@@ -13,8 +13,8 @@
     <ProjectGuid>{BE4A9733-6702-4690-B3A2-E3F34C520AB4}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>PinnacleCodingConvention</RootNamespace>
-    <AssemblyName>PinnacleCodingConvention</AssemblyName>
+    <RootNamespace>CodingConvention</RootNamespace>
+    <AssemblyName>CodingConvention</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <GeneratePkgDefFile>true</GeneratePkgDefFile>
     <UseCodebase>true</UseCodebase>
@@ -50,7 +50,6 @@
     <Compile Include="Commands\CodeCleanUpProfileCommandHandler.cs" />
     <Compile Include="Helpers\CodeCommentHelper.cs" />
     <Compile Include="Helpers\CodeElementHelper.cs" />
-    <Compile Include="Helpers\CodeItemNameComparer.cs" />
     <Compile Include="Helpers\CodeItemTypeComparer.cs" />
     <Compile Include="Common\CodeLanguage.cs" />
     <Compile Include="Helpers\CodeLanguageHelper.cs" />
@@ -66,6 +65,7 @@
     <Compile Include="Helpers\TextDocumentHelper.cs" />
     <Compile Include="Helpers\UIHierarchyHelper.cs" />
     <Compile Include="Helpers\UndoTransactionHelper.cs" />
+    <Compile Include="Models\AccessModifier.cs" />
     <Compile Include="Models\CodeItems\BaseCodeItem.cs" />
     <Compile Include="Models\CodeItems\BaseCodeItemElement.cs" />
     <Compile Include="Models\CodeItems\BaseCodeItemElementParent.cs" />
