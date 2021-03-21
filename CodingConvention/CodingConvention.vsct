@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CommandTable xmlns="http://schemas.microsoft.com/VisualStudio/2005-10-18/CommandTable" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <!--This is the file that defines the IDs for all the commands exposed by VisualStudio. -->
+  <Extern href="stdidcmd.h"/>
+
+  <!--This header contains the command ids for the menus provided by the shell. -->
+  <Extern href="vsshlids.h"/>
+  <Include href="KnownImageIds.vsct"/>
+  <!--The Commands section is where commands, menus, and menu groups are defined.
+      This section uses a Guid to identify the package that provides the command defined inside it. -->
+  <Commands package="CodingConventionPackage">
+  
+    <Groups>
+      <Group guid="CodingConventionPackageCmdSet" id="EditorContextMenuGroup" priority="0x0600">
+        <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_CODEWIN" />
+      </Group>
+    </Groups>
+
+    <Buttons>
+      <Button guid="CodingConventionPackageCmdSet" id="CleanUpCommandId" priority="0x0100" type="Button">
+        <Parent guid="CodingConventionPackageCmdSet" id="EditorContextMenuGroup" />
+        <Icon guid="Icon" id="commandIcon1" />
+        <Strings>
+          <ButtonText>Coding Convention Cleanup</ButtonText>
+        </Strings>
+      </Button>
+    </Buttons>
+
+    
+    <Bitmaps>
+      <Bitmap guid="Icon" href="Resources\Icon-16x16.png" usedList="commandIcon1"/>
+    </Bitmaps>
+  </Commands>
+  
+  <KeyBindings>
+    <KeyBinding guid="CodingConventionPackageCmdSet" id="CleanUpCommandId" editor="guidVSStd97"
+                mod1="Control" key1="M"
+                mod2="Control" key2="F"/>
+  </KeyBindings>
+
+  <Symbols>
+    <GuidSymbol name="CodingConventionPackage" value="{2aef4ddf-562d-4264-9929-24f3be06c921}" />
+
+    <GuidSymbol name="CodingConventionPackageCmdSet" value="{a35bce14-852c-484e-a8c0-88371dbc25ad}">
+      <IDSymbol name="EditorContextMenuGroup" value="0x1020" />
+      <IDSymbol name="CleanUpCommandId" value="0x0100" />
+    </GuidSymbol>
+
+    <GuidSymbol name="Icon" value="{6604656D-6C88-457B-8788-1AA26288582E}">
+      <IDSymbol name="commandIcon1" value="1" />
+    </GuidSymbol>
+
+    <GuidSymbol name="CodingConventionOutputPane" value="{baf6f569-4d9d-4d08-9cf9-6b98cd7a47b1}" />
+  </Symbols>
+  
+</CommandTable>

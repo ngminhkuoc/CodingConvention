@@ -1,33 +1,29 @@
 {
-  "$schema": "http://json.schemastore.org/vsix-publish",
-  "categories": [
-    "Coding"
-  ],
-  "identity": {
-    "internalName": "PinnacleCodingConvention",
-    "tags": [
-      "cleanup",
-      "format"
-    ]
-  },
-  "assetFiles": [
-    {
-      "pathOnDisk": "..\\PinnacleCodingConvention\\Resources\\Preview.png",
-      "targetPath": "Resources/Preview.png"
+    "$schema": "http://json.schemastore.org/vsix-publish",
+    "categories": [
+        "Coding"
+    ],
+    "identity": {
+        "internalName": "CodingConvention",
+        "tags": [
+            "cleanup",
+            "format"
+        ]
     },
-    {
-      "pathOnDisk": "..\\Images\\Demo.gif",
-      "targetPath": "Images/Demo.gif"
-    },
-    {
-      "pathOnDisk": "..\\Images\\Configure_Code_Cleanup.png",
-      "targetPath": "Images/Configure_Code_Cleanup.png"
-    }
-  ],
-  "overview": "../README.md",
-  "priceCategory": "free",
-  "publisher": "KhanhVu",
-  "private": false,
-  "qna": true,
-  "repo": "https://github.com/vtkhanh/PinnacleCodingConvention"
+    "assetFiles": [
+        {
+            "pathOnDisk": "..\\CodingConvention\\Resources\\Preview.png",
+            "targetPath": "Resources/Preview.png"
+        },
+        {
+            "pathOnDisk": "..\\Images\\Configure_Code_Cleanup.png",
+            "targetPath": "Images/Configure_Code_Cleanup.png"
+        }
+    ],
+    "overview": "../README.md",
+    "priceCategory": "free",
+    "publisher": "ngminhkuoc",
+    "private": false,
+    "qna": true,
+    "repo": "https://github.com/ngminhkuoc/CodingConvention"
 }

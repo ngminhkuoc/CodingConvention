@@ -1,39 +1,20 @@
-# Pinnacle Coding Convention
-This project is about to ensure and automate some coding conventions in the Pinnacle solution. 
-It helps developers to avoid some tedious NW in code review, e.g. A-Z order, missing regions, regions not matched...
+# Coding Convention
+This project is about to ensure and automate some coding conventions in C# file:
 
-![Demo](Images/Demo.gif)
-
-## Build
-[![Build Status](https://dev.azure.com/khanhthevu/PinnacleCodingConvention/_apis/build/status/PinnacleCodingConvention?branchName=master)](https://dev.azure.com/khanhthevu/PinnacleCodingConvention/_build/latest?definitionId=2&branchName=master)
-
-## Release 
-
-### 1.1.9
-- Remove unnecessary options to get conventions unified:
-    - Do not treat "Page_Load" as a special one (always sort by alphabetical order)
-    - Do separate class consts and others
-    - Do put "readonly" fields before others
-
-### 1.1.8
-- Do not add regions, and remove existing regions.
-- Group by sections:
-    - Constants
-    - Fields
-    - Constructors
-    - Methods
-    - Properties
-
-### 1.1.5
-Change to not get Clipboard involved when formatting in an attempt to fix the exception: 
-`System.Runtime.InteropServices.COMException (0x800401D0): OpenClipboard Failed (Exception from HRESULT: 0x800401D0 (CLIPBRD_E_CANT_OPEN))`
-### 1.1.2
-Add ability to Run Code Cleanup (Profile) feature from Visual Studio 2019. Be able to config which Profile to execute through option: Tools > Options > Pinnacle Coding Convention > General > Profile
-
-Some functionalities from Cleanup Profile:
-- Sort usings
-- Remove Unnecessary usings
-- Apply implicit/explicit preferences
-- Remove unused variable
-
-![Config Code Cleanup](Images/Configure_Code_Cleanup.png)
+ 1. Invoke code cleanup profile of Visual Studio
+ ![Config Code Cleanup](Images/Configure_Code_Cleanup.png)
+ 2. Organise the code structure into sections following order: 
+  - Constants
+  - Readonly class variables
+  - Class variables
+  - Constructor(s)
+  - Methods
+  - Properties
+  - Destructor
+ 3. In each section, the code will sorted by access modifier following order:
+  - public
+  - protected internal
+  - protected (or privated protected)
+  - internal
+  - default
+  - private

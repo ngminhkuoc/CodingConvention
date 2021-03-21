@@ -1,0 +1,192 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MinimumVisualStudioVersion>16.0</MinimumVisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectTypeGuids>{82b43b9b-a64c-4715-b499-d71e9ca2bd60};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectGuid>{BE4A9733-6702-4690-B3A2-E3F34C520AB4}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CodingConvention</RootNamespace>
+    <AssemblyName>CodingConvention</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <GeneratePkgDefFile>true</GeneratePkgDefFile>
+    <UseCodebase>true</UseCodebase>
+    <IncludeAssemblyInVSIXContainer>true</IncludeAssemblyInVSIXContainer>
+    <IncludeDebugSymbolsInVSIXContainer>false</IncludeDebugSymbolsInVSIXContainer>
+    <IncludeDebugSymbolsInLocalVSIXDeployment>false</IncludeDebugSymbolsInLocalVSIXDeployment>
+    <CopyBuildOutputToOutputDirectory>true</CopyBuildOutputToOutputDirectory>
+    <CopyOutputSymbolsToOutputDirectory>true</CopyOutputSymbolsToOutputDirectory>
+    <StartAction>Program</StartAction>
+    <StartProgram Condition="'$(DevEnvDir)' != ''">$(DevEnvDir)devenv.exe</StartProgram>
+    <StartArguments>/rootsuffix Exp</StartArguments>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Commands\CleanUpCommandHandler.cs" />
+    <Compile Include="Commands\CleanUpCommandArgs.cs" />
+    <Compile Include="Commands\CodeCleanUpProfileCommandHandler.cs" />
+    <Compile Include="Helpers\CodeCommentHelper.cs" />
+    <Compile Include="Helpers\CodeElementHelper.cs" />
+    <Compile Include="Helpers\CodeItemTypeComparer.cs" />
+    <Compile Include="Common\CodeLanguage.cs" />
+    <Compile Include="Helpers\CodeLanguageHelper.cs" />
+    <Compile Include="Helpers\DocumentExtension.cs" />
+    <Compile Include="Helpers\EditPointExtension.cs" />
+    <Compile Include="Helpers\ExplicitInterfaceImplementationHelper.cs" />
+    <Compile Include="Helpers\OutputWindowHelper.cs" />
+    <Compile Include="Helpers\ProjectItemExtension.cs" />
+    <Compile Include="Helpers\RegexNullSafe.cs" />
+    <Compile Include="Helpers\RegionHelper.cs" />
+    <Compile Include="Helpers\SolutionHelper.cs" />
+    <Compile Include="Helpers\TextDocumentExtension.cs" />
+    <Compile Include="Helpers\TextDocumentHelper.cs" />
+    <Compile Include="Helpers\UIHierarchyHelper.cs" />
+    <Compile Include="Helpers\UndoTransactionHelper.cs" />
+    <Compile Include="Models\AccessModifier.cs" />
+    <Compile Include="Models\CodeItems\BaseCodeItem.cs" />
+    <Compile Include="Models\CodeItems\BaseCodeItemElement.cs" />
+    <Compile Include="Models\CodeItems\BaseCodeItemElementParent.cs" />
+    <Compile Include="Models\CodeItems\CodeItemClass.cs" />
+    <Compile Include="Models\CodeItems\CodeItemDelegate.cs" />
+    <Compile Include="Models\CodeItems\CodeItemEnum.cs" />
+    <Compile Include="Models\CodeItems\CodeItemEvent.cs" />
+    <Compile Include="Models\CodeItems\CodeItemField.cs" />
+    <Compile Include="Models\CodeItems\CodeItemInterface.cs" />
+    <Compile Include="Models\CodeItems\CodeItemMethod.cs" />
+    <Compile Include="Models\CodeItems\CodeItemNamespace.cs" />
+    <Compile Include="Models\CodeItems\CodeItemProperty.cs" />
+    <Compile Include="Models\CodeItems\CodeItemRegion.cs" />
+    <Compile Include="Models\CodeItems\CodeItemStruct.cs" />
+    <Compile Include="Models\CodeItems\CodeItemUsingStatement.cs" />
+    <Compile Include="Models\CodeItems\FactoryCodeItems.cs" />
+    <Compile Include="Models\CodeItems\ICodeItem.cs" />
+    <Compile Include="Models\CodeItems\ICodeItemComplexity.cs" />
+    <Compile Include="Models\CodeItems\ICodeItemParameters.cs" />
+    <Compile Include="Models\CodeItems\ICodeItemParent.cs" />
+    <Compile Include="Models\CodeItems\IInterfaceItem.cs" />
+    <Compile Include="Models\CodeItems\KindCodeItem.cs" />
+    <Compile Include="Models\CodeModel.cs" />
+    <Compile Include="Options\BaseOptionModel.cs" />
+    <Compile Include="Options\BaseOptionPage.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Options\CodeCleanupProfile.cs" />
+    <Compile Include="Options\DialogPageProvider.cs" />
+    <Compile Include="Options\GeneralOptions.cs" />
+    <Compile Include="CodingConvention.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CodingConvention.vsct</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="CodingConventionPackage.cs" />
+    <Compile Include="Common\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Services\CleanUpManager.cs" />
+    <Compile Include="Services\CodeItemReorganizer.cs" />
+    <Compile Include="Services\CodeItemRetriever.cs" />
+    <Compile Include="Services\CodeModelBuilder.cs" />
+    <Compile Include="Services\CodeModelService.cs" />
+    <Compile Include="Services\CodeRegionService.cs" />
+    <Compile Include="Services\CodeTreeBuilder.cs" />
+    <Compile Include="Services\BlankLineInsertService.cs" />
+    <Compile Include="source.extension.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>source.extension.vsixmanifest</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".editorconfig" />
+    <None Include="source.extension.vsixmanifest">
+      <SubType>Designer</SubType>
+      <Generator>VsixManifestGenerator</Generator>
+      <LastGenOutput>source.extension.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.SDK" Version="16.0.200" ExcludeAssets="runtime" />
+    <PackageReference Include="Microsoft.VSSDK.BuildTools" Version="16.3.1061" />
+  </ItemGroup>
+  <ItemGroup>
+    <VSCTCompile Include="CodingConvention.vsct">
+      <ResourceName>Menus.ctmenu</ResourceName>
+      <Generator>VsctGenerator</Generator>
+      <LastGenOutput>CodingConvention.cs</LastGenOutput>
+    </VSCTCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\Icon-16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Resources\Icon-48x48.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Resources\Logo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Resources\Preview.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Common\Resource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\VSSDK\Microsoft.VsSDK.targets" Condition="'$(VSToolsPath)' != ''" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

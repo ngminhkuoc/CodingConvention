@@ -42,12 +42,6 @@ steps:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
-- task: VSTest@2
-  displayName: Run tests
-  inputs:
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
-
 # Publish all needed files for the Release pipeline
 - task: CopyFiles@2
   displayName: Copy Artifacts to staging
@@ -57,7 +51,7 @@ steps:
       README.md
       Build/**
       Images/**
-      PinnacleCodingConvention/Resources/**
+      CodingConvention/Resources/**
       **/*.vsix
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
