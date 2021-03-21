@@ -1,6 +1,6 @@
 # Parameters used to publish to marketplace
 $PersonalAccessToken = $args[0]
-$VsixPath = "$PSScriptRoot\..\PinnacleCodingConvention\bin\Release\PinnacleCodingConvention.vsix"
+$VsixPath = "$PSScriptRoot\..\CodingConvention\bin\Release\CodingConvention.vsix"
 $ManifestPath = "$PSScriptRoot\extension-manifest.json"
 
 # Find the location of VsixPublisher
